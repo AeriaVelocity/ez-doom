@@ -1,0 +1,23 @@
+{
+    "app-id": "org.aeriavelocity.EzDOOM",
+    "name": "EzDOOM",
+    "version": "0.1.0",
+    "runtime": "org.freedesktop.Sdk",
+    "command": "ezdoom",
+    "modules": [
+        {
+            "name": "EzDOOM",
+            "buildsystem": "cargo",
+            "config-opts": [
+                "--release"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/AeriaVelocity/EzDOOM.git",
+                    "branch": "main"
+                }
+            ]
+        }
+    ]
+}
