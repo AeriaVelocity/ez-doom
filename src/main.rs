@@ -10,6 +10,10 @@ use gtk4 as gtk;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow};
 
+fn placeholder() -> gtk::Label {
+    gtk::Label::new(Some("The programmer has a nap. Hold out! Programmer!"))
+}
+
 /// It's the fricking main function. What did you really expect to see here?
 fn main() -> glib::ExitCode {
     let app = Application::builder()
@@ -24,8 +28,11 @@ fn main() -> glib::ExitCode {
             .default_height(600)
             .build();
 
+        window.set_child(Some(&placeholder()));
+
         window.present();
     });
+
 
     app.run()
 }
