@@ -101,3 +101,18 @@ I can always go back and clean it up later, even though that always results
 in more pain than it's probably worth.
 
 Either way, I'm probably not giving up. Probably.
+
+### 6:02 PM
+
+OKAY. OKAY OKAY OKAY. I actually did something. I actually got it working for
+real actually.
+
+![Page 2 of the Installer](ezdoom-installer-page2-2024-06-06.png)
+
+It doesn't go any further than this (because I haven't written that far ahead)
+but that works! I'm proud to say I'm no longer going insane and now somewhat
+understand how in the frick frack GTK works.
+
+I'm going to stop here for today and pick this up again tomorrow. I won't make
+another entry unless I get a brainwave later on and absolutely have to implement
+a new change then. I'm like that sometimes.
