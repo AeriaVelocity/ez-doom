@@ -19,17 +19,15 @@ mod config;
 /// This contains the actual functionality of EzDOOM and is called from the
 /// GTK `activate` event through `connect_activate`.
 fn on_activate(app: &gtk::Application) {
-    let window_dimensions = (800, 600);
-
     let window = ApplicationWindow::builder()
         .application(app)
         .title("EzDOOM")
-        .default_width(window_dimensions.0)
-        .default_height(window_dimensions.1)
+        .default_width(600)
+        .default_height(500)
         .build();
 
     let stack = Stack::new();
-    stack.set_transition_type(gtk::StackTransitionType::Crossfade);
+    stack.set_transition_type(gtk::StackTransitionType::SlideLeftRight);
     window.set_child(Some(&stack));
 
     let welcome_page = create_welcome_page(&stack);
@@ -45,7 +43,7 @@ fn on_activate(app: &gtk::Application) {
 }
 
 fn create_welcome_page(stack: &Stack) -> gtk::Box {
-    let layout = gtk::Box::new(gtk::Orientation::Vertical, 0);
+    let layout = gtk::Box::new(gtk::Orientation::Vertical, 40);
     layout.set_halign(Align::Center);
     layout.set_valign(Align::Center);
 
@@ -53,13 +51,16 @@ fn create_welcome_page(stack: &Stack) -> gtk::Box {
     title.set_halign(Align::Center);
     layout.append(&title);
 
+    let button_box = gtk::Box::new(gtk::Orientation::Horizontal, 8);
+    layout.append(&button_box);
+
     let install_button = gtk::Button::with_label("Install DOOM"); 
     install_button.connect_clicked(clone!(@weak stack => move |_| stack.set_visible_child_name("installer-page")));
-    layout.append(&install_button);
+    button_box.append(&install_button);
 
     let config_button = gtk::Button::with_label("Configure EzDOOM");
     config_button.connect_clicked(clone!(@weak stack => move |_| stack.set_visible_child_name("config-page")));
-    layout.append(&config_button);
+    button_box.append(&config_button);
 
     layout
 }
