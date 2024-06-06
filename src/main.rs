@@ -8,8 +8,11 @@
 use gtk4 as gtk;
 
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Align, Label};
+use gtk::{glib, Application, ApplicationWindow, Align, Label, Stack};
 use glib::clone;
+
+mod installer;
+mod config;
 
 /// Handles the window activation event.
 /// 
@@ -25,44 +28,40 @@ fn on_activate(app: &gtk::Application) {
         .default_height(window_dimensions.1)
         .build();
 
-    let welcome_layout = gtk::Box::new(gtk::Orientation::Vertical, 0);
-    welcome_layout.set_halign(Align::Center);
-    welcome_layout.set_valign(Align::Center);
-    window.set_child(Some(&welcome_layout));
+    let stack = Stack::new();
+    stack.set_transition_type(gtk::StackTransitionType::Crossfade);
+    window.set_child(Some(&stack));
 
-    let welcome_title = Label::new(Some("Welcome to EzDOOM!"));
-    welcome_title.set_halign(Align::Center);
+    let welcome_page = create_welcome_page(&stack);
+    stack.add_named(&welcome_page, Some("welcome-page"));
 
-    let install_button = gtk::Button::with_label("Install DOOM"); 
-    let config_button = gtk::Button::with_label("Configure EzDOOM");
+    let installer_page = installer::create_page(&window, &stack);
+    stack.add_named(&installer_page, Some("installer-page"));
 
-    let close_button = gtk::Button::with_label("Close");
-    close_button.connect_clicked(clone!(@weak window => move |_| window.close()));
-    
-    welcome_layout.append(&welcome_title);
-    welcome_layout.append(&install_button);
-    welcome_layout.append(&config_button);
-    welcome_layout.append(&close_button);
-
-    let installer_layout = gtk::Box::new(gtk::Orientation::Vertical, 18);
-    installer_layout.set_halign(Align::Start);
-
-    let installer_title = Label::new(Some("EzDOOM will now install DOOM to your computer.\nBefore we proceed, we'll need to ask you a few questions about your preferred setup."));
-
-    installer_layout.append(&installer_title);
-
-    let config_layout = gtk::Box::new(gtk::Orientation::Vertical, 18);
-    config_layout.set_halign(Align::Start);
-
-    let config_title = Label::new(Some("Config utility goes here."));
-
-    config_layout.append(&config_title);
-
-    install_button.connect_clicked(clone!(@weak window => move |_| window.set_child(Some(&installer_layout))));
-
-    config_button.connect_clicked(clone!(@weak window => move |_| window.set_child(Some(&config_layout))));
+    let config_page = config::create_page(&window, &stack);
+    stack.add_named(&config_page, Some("config-page"));
 
     window.present();
+}
+
+fn create_welcome_page(stack: &Stack) -> gtk::Box {
+    let layout = gtk::Box::new(gtk::Orientation::Vertical, 0);
+    layout.set_halign(Align::Center);
+    layout.set_valign(Align::Center);
+
+    let title = Label::new(Some("Welcome to EzDOOM!"));
+    title.set_halign(Align::Center);
+    layout.append(&title);
+
+    let install_button = gtk::Button::with_label("Install DOOM"); 
+    install_button.connect_clicked(clone!(@weak stack => move |_| stack.set_visible_child_name("installer-page")));
+    layout.append(&install_button);
+
+    let config_button = gtk::Button::with_label("Configure EzDOOM");
+    config_button.connect_clicked(clone!(@weak stack => move |_| stack.set_visible_child_name("config-page")));
+    layout.append(&config_button);
+
+    layout
 }
 
 /// It's the fricking main function. What did you really expect to see here?

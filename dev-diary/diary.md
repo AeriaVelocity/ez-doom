@@ -85,3 +85,19 @@ I have no idea how to create "standard" GTK apps.
 
 So, yeah. Jumping into a project of this scale with a framework I've never
 used in my life... not exactly my proudest moment.
+
+### 4:44 PM
+
+![Workspace as of 2024-06-06, 4:44 PM](workspace-2024-06-06.png)
+
+I think I did something. What did I do exactly? I'll get back to you on that.
+All you need to know is I still have no idea what the hell I'm doing. What even
+is a `GtkStack`?
+
+Either way, I think this code is absolutely fricking abysmal and I need to
+learn how to do this properly, but for now, if it works it works, I guess.
+
+I can always go back and clean it up later, even though that always results
+in more pain than it's probably worth.
+
+Either way, I'm probably not giving up. Probably.
