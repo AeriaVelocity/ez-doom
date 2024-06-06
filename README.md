@@ -14,6 +14,19 @@ configuration utility.
 ### Core
 
 - [ ] Write an installation wizard
+  - [x] Preinstallation
+  - [x] Source Port (in progress)
+  - [ ] Mod Support
+    - [ ] Mods Folder
+  - [ ] Game Files
+  - [ ] Terminal Access
+  - [ ] IWAD Location
+  - [ ] Mods Folder
+  - [ ] Game Files
+    - [ ] IWAD Location
+  - [ ] Confirmation
+  - [ ] Applying
+  - [ ] Finished
 - [ ] Allow for easy installation of GZDoom through Flatpak
   - [ ] Set up Flatpak permissions automagically
   - [ ] Create a Mods folder, if the user wants it
