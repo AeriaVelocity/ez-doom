@@ -42,3 +42,16 @@ configuration utility.
 - [ ] Modularity
 - [ ] Upload EzDOOM to Flathub at some point
 - [ ] Add support specifically for the Steam Deck
+
+## Contributing
+
+Feel free to tell me my GTK-fu sucks. I'm new to this.
+
+If you have suggestions, please drop an issue in the Issues tab.
+Then I'll probably maybe listen to what you have to say.
+
+## Licence
+
+EzDOOM is made free under the GNU General Public License,
+because where the frick do you think you are?!
+Of course it's GNU GPL, it's a god damn AeriaVelocity project!
